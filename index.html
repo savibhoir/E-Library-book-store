@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="The Scholar's Sanctuary - Vintage Bookstore & Archival Management System. Preserving the intellectual legacy of humanity through curated academic volumes, timeless classics, and 3D reading previews.">
+  <meta name="keywords"
+    content="Vintage Bookstore, The Scholar's Sanctuary, Book Management System, Antique Books, Library Archive, Final Year Project">
+  <title>Vintage Bookstore | The Scholar's Sanctuary &amp; Management</title>
+
+  <!-- Google Fonts: Cormorant Garamond + Playfair Display + Cinzel + Plus Jakarta Sans + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600;1,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Font Awesome 6 for Crisp Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Ambient Glowing Background Canvas / Mesh -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <!-- TOP NOTIFICATION BANNER -->
+  <div class="top-announcement-bar">
+    <div class="announcement-content">
+      <span class="pulse-dot"></span>
+      <span class="announcement-text"><strong>SPECIAL PROCLAMATION:</strong> Use code <mark
+          class="promo-pill">READ20</mark> for 20% OFF! Free courier delivery across India on orders above ₹499!</span>
+    </div>
+  </div>
+
+  <!-- VINTAGE NAVIGATION BAR -->
+  <header class="navbar" id="main-nav">
+    <div class="nav-container">
+      <!-- Brand Logo -->
+      <a href="#hero" class="brand-logo" id="brand-logo">
+        <div class="logo-icon-box">
+          <i class="fa-solid fa-book-bookmark"></i>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Vintage Bookstore</span>
+          <span class="brand-sub">THE SCHOLAR'S SANCTUARY</span>
+        </div>
+      </a>
+
+      <!-- Quick Search Form -->
+      <div class="nav-search-box" id="nav-search-container">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="global-search-input" placeholder="Search volumes, authors, treatises..."
+          autocomplete="off">
+        <button type="button" class="clear-search-btn hidden" id="clear-search-btn" aria-label="Clear search">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <!-- Live Search Dropdown Popup -->
+        <div class="search-dropdown-results hidden" id="search-dropdown-results"></div>
+      </div>
+
+      <!-- Navigation Links Matching The Reference -->
+      <nav class="nav-menu" id="nav-menu">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="#catalog-section" class="nav-link active">Library</a></li>
+          <li class="nav-item"><a href="#catalog-section" class="nav-link nav-filter-link"
+              data-cat="Philosophy">Philosophy</a></li>
+          <li class="nav-item"><a href="#catalog-section" class="nav-link nav-filter-link" data-cat="Fiction">Literature
+              &amp; History</a></li>
+          <li class="nav-item"><a href="#catalog-section" class="nav-link nav-filter-link"
+              data-cat="Technology">Science</a></li>
+          <li class="nav-item"><a href="#vibe-matcher" class="nav-link"><i class="fa-solid fa-wand-magic-sparkles"></i>
+              Vibe Match</a></li>
+          <li class="nav-item"><a href="#reading-lounge" class="nav-link"><i class="fa-solid fa-headphones"></i>
+              Sanctuary Lounge</a></li>
+        </ul>
+      </nav>
+
+      <!-- Action Icons & Theme Toggle -->
+      <div class="nav-actions">
+        <!-- Theme Switcher -->
+        <button class="icon-btn theme-toggle-btn" id="theme-toggle-btn" title="Toggle Light / Dark Sanctuary Mode"
+          aria-label="Toggle Theme">
+          <i class="fa-solid fa-moon theme-icon"></i>
+        </button>
+
+        <!-- Wishlist Button -->
+        <button class="icon-btn wishlist-btn" id="nav-wishlist-btn" title="Saved Folios" aria-label="Wishlist">
+          <i class="fa-regular fa-heart"></i>
+          <span class="badge-count" id="wishlist-badge">0</span>
+        </button>
+
+        <!-- Cart Button -->
+        <button class="icon-btn cart-btn-primary" id="nav-cart-btn" title="View Book Bag" aria-label="Cart">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="badge-count" id="cart-badge">0</span>
+          <span class="cart-btn-total" id="cart-nav-total">₹0</span>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="icon-btn mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Open Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- 1. CUSTOMER STOREFRONT / SCHOLAR'S SANCTUARY VIEW                         -->
+  <!-- ========================================================================= -->
+  <main class="view-container active" id="customer-view">
+
+    <!-- HERO SECTION - MATCHING USER REFERENCE IMAGE -->
+    <section class="hero-section vintage-hero" id="hero">
+      <div class="hero-library-backdrop"></div>
+      <div class="hero-vintage-overlay"></div>
+
+      <div class="hero-vintage-container text-center">
+        <!-- EST. 1892 VINTAGE EMBLEM -->
+        <div class="vintage-est-tag">
+          <span class="est-line"></span>
+          <span class="est-text">E S T . 1 8 9 2</span>
+          <span class="est-line"></span>
+        </div>
+
+        <!-- MAIN TITLE EXACTLY AS IMAGE -->
+        <h1 class="vintage-hero-title">
+          The Scholar's <br>
+          <span class="italic-serif">Sanctuary</span>
+        </h1>
+
+        <!-- SUBTITLE AS IMAGE -->
+        <p class="vintage-hero-desc">
+          Immerse yourself in a curated collection of academic volumes and timeless classics. Preserving the
+          intellectual legacy of humanity, one page at a time.
+        </p>
+
+        <!-- CTA BUTTONS AS IMAGE -->
+        <div class="vintage-hero-cta">
+          <a href="#catalog-section" class="btn btn-burgundy-solid">
+            Enter the Library
+          </a>
+          <a href="#catalog-section" class="btn btn-burgundy-outline">
+            Explore Domains
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARCHIVAL SPOTLIGHT & DEAL OF THE DAY -->
+    <section class="spotlight-strip-section">
+      <div class="section-container" style="padding-top: 20px; padding-bottom: 40px;">
+        <div class="spotlight-card" id="spotlight-card">
+          <div class="spotlight-header">
+            <span class="spotlight-tag"><i class="fa-solid fa-feather"></i> Manuscript of the Day</span>
+            <div class="spotlight-timer" id="spotlight-timer">
+              <i class="fa-regular fa-clock"></i> <span id="deal-countdown">08:45:12</span>
+            </div>
+          </div>
+
+          <div class="spotlight-body">
+            <!-- 3D Book Spine & Cover -->
+            <div class="book-3d-spotlight" id="hero-3d-book">
+              <div class="book-spine"></div>
+              <div class="book-cover-front">
+                <img id="spotlight-img"
+                  src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80"
+                  alt="Spotlight Book"
+                  onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80';">
+                <div class="book-sheen"></div>
+              </div>
+            </div>
+
+            <!-- Spotlight Details -->
+            <div class="spotlight-details">
+              <span class="spotlight-genre" id="spotlight-genre">Sci-Fi / Cyberpunk</span>
+              <h3 class="spotlight-title" id="spotlight-title">Neuromancer: 40th Anniversary</h3>
+              <p class="spotlight-author" id="spotlight-author">by William Gibson</p>
+              <div class="spotlight-rating">
+                <span class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                    class="fa-solid fa-star-half-stroke"></i></span>
+                <span class="rating-val">4.9 (1,420 scholarly reviews)</span>
+              </div>
+              <p class="spotlight-synopsis" id="spotlight-synopsis">
+                The Matrix is a world within the world, a global consensus-hallucination. Case was the sharpest
+                data-thief in the sprawl...
+              </p>
+              <div class="spotlight-price-row">
+                <div class="price-box">
+                  <span class="current-price" id="spotlight-price">₹699</span>
+                  <span class="old-price" id="spotlight-old-price">₹999</span>
+                  <span class="discount-badge">Save 30%</span>
+                </div>
+              </div>
+              <div class="spotlight-actions">
+                <button class="btn btn-burgundy-solid" id="spotlight-add-cart-btn">
+                  <i class="fa-solid fa-cart-plus"></i> Add to Bag
+                </button>
+                <button class="btn btn-burgundy-outline" id="spotlight-preview-btn">
+                  <i class="fa-solid fa-book-open-reader"></i> Look Inside
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI VIBE MATCHER & MOOD RECOMMENDER -->
+    <section class="vibe-section" id="vibe-matcher">
+      <div class="section-container">
+        <div class="section-header text-center">
+          <div class="section-subtitle"><i class="fa-solid fa-feather-pointed"></i> Introspective Resonance</div>
+          <h2 class="section-title">What is your current <span class="wine-text">Reading Atmosphere?</span></h2>
+          <p class="section-desc">Select your desired emotional climate. Our curation algorithm pairs your state of mind
+            with the perfect scholarly treatise or prose.</p>
+        </div>
+
+        <!-- Vibe Chip Selector -->
+        <div class="vibe-chips-grid">
+          <button class="vibe-chip active" data-vibe="dark-academia">
+            <span class="vibe-icon">🕯️</span>
+            <span class="vibe-text">
+              <strong>Dark Academia</strong>
+              <small>Ancient Libraries, Classical Greek &amp; Latin</small>
+            </span>
+          </button>
+          <button class="vibe-chip" data-vibe="rainy-cafe">
+            <span class="vibe-icon">☕</span>
+            <span class="vibe-text">
+              <strong>Rainy Day Study</strong>
+              <small>Melancholic Coffee, Rare Volumes &amp; Poetry</small>
+            </span>
+          </button>
+          <button class="vibe-chip" data-vibe="deep-philosophy">
+            <span class="vibe-icon">🧠</span>
+            <span class="vibe-text">
+              <strong>Deep Philosophy</strong>
+              <small>Stoicism, Existentialism, Human Nature</small>
+            </span>
+          </button>
+          <button class="vibe-chip" data-vibe="cyberpunk">
+            <span class="vibe-icon">🌆</span>
+            <span class="vibe-text">
+              <strong>Speculative Sci-Fi</strong>
+              <small>Dystopian AI, Neural Networks, Noir</small>
+            </span>
+          </button>
+          <button class="vibe-chip" data-vibe="quantum-sci-fi">
+            <span class="vibe-icon">🌌</span>
+            <span class="vibe-text">
+              <strong>Cosmic Wonders</strong>
+              <small>Astrophysics, Space Odyssey, Multiverse</small>
+            </span>
+          </button>
+          <button class="vibe-chip" data-vibe="cozy-fantasy">
+            <span class="vibe-icon">🌿</span>
+            <span class="vibe-text">
+              <strong>Mythic Lore &amp; Fantasy</strong>
+              <small>Ancient Epics, Folklore &amp; Magic</small>
+            </span>
+          </button>
+        </div>
+
+        <!-- Vibe Match Result Container -->
+        <div class="vibe-result-card" id="vibe-result-card">
+          <!-- Dynamically populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE CATALOG & MARKETPLACE -->
+    <section class="catalog-section" id="catalog-section">
+      <div class="section-container">
+        <!-- Catalog Title & Controls Bar -->
+        <div class="catalog-header-bar">
+          <div>
+            <div class="section-subtitle"><i class="fa-solid fa-landmark"></i> The Archives</div>
+            <h2 class="section-title">Explore The <span class="wine-text">Collection</span></h2>
+          </div>
+
+          <div class="catalog-controls">
+            <!-- Items count badge -->
+            <div class="results-counter" id="results-count-badge">
+              Showing <strong>16</strong> volumes
+            </div>
+
+            <!-- Sort dropdown -->
+            <div class="custom-select-wrapper">
+              <label for="catalog-sort" class="sr-only">Sort by</label>
+              <i class="fa-solid fa-arrow-down-short-wide select-icon"></i>
+              <select id="catalog-sort" class="custom-select">
+                <option value="featured">✨ Curator's Selection</option>
+                <option value="rating-desc">⭐ Highest Acclaimed</option>
+                <option value="price-asc">💵 Price: Modest to Rare</option>
+                <option value="price-desc">💎 Price: Rare to Modest</option>
+                <option value="title-asc">🔤 Title: A to Z</option>
+                <option value="newest">🚀 Recent Acquisitions</option>
+              </select>
+            </div>
+
+            <!-- Layout View Toggle -->
+            <div class="view-mode-toggle" id="view-mode-toggle">
+              <button class="view-btn active" data-view="grid" title="Grid View" aria-label="Grid View">
+                <i class="fa-solid fa-table-cells-large"></i>
+              </button>
+              <button class="view-btn" data-view="list" title="Compact List View" aria-label="List View">
+                <i class="fa-solid fa-list-ul"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Catalog Layout: Filter Sidebar + Books Grid -->
+        <div class="catalog-layout">
+          <!-- SIDEBAR FILTERS -->
+          <aside class="catalog-sidebar" id="catalog-sidebar">
+            <div class="sidebar-card">
+              <div class="sidebar-header">
+                <h3><i class="fa-solid fa-sliders"></i> Filter Archives</h3>
+                <button type="button" class="reset-filters-btn" id="reset-filters-btn" title="Reset all filters">
+                  <i class="fa-solid fa-arrow-rotate-left"></i> Reset
+                </button>
+              </div>
+
+              <!-- Filter 1: Genre / Category -->
+              <div class="filter-group">
+                <h4 class="filter-title"><i class="fa-solid fa-bookmark"></i> Domains</h4>
+                <div class="category-pills" id="category-filter-container">
+                  <button class="category-pill active" data-category="all">All Domains</button>
+                  <button class="category-pill" data-category="Philosophy">Philosophy &amp; Mind</button>
+                  <button class="category-pill" data-category="Fiction">Literature &amp; History</button>
+                  <button class="category-pill" data-category="Technology">Science &amp; Systems</button>
+                  <button class="category-pill" data-category="Sci-Fi">Speculative Sci-Fi</button>
+                  <button class="category-pill" data-category="Fantasy">Myth &amp; Folklore</button>
+                  <button class="category-pill" data-category="Self-Help">Wisdom &amp; Strategy</button>
+                </div>
+              </div>
+
+              <!-- Filter 2: Edition / Format -->
+              <div class="filter-group">
+                <h4 class="filter-title"><i class="fa-solid fa-box-archive"></i> Binding &amp; Format</h4>
+                <div class="format-checkbox-list" id="format-filter-container">
+                  <label class="custom-checkbox">
+                    <input type="checkbox" value="Hardcover" checked>
+                    <span class="checkmark"></span>
+                    <span class="cb-label">Hardcover Clothbound</span>
+                  </label>
+                  <label class="custom-checkbox">
+                    <input type="checkbox" value="Paperback" checked>
+                    <span class="checkmark"></span>
+                    <span class="cb-label">Deluxe Paperback</span>
+                  </label>
+                  <label class="custom-checkbox">
+                    <input type="checkbox" value="eBook" checked>
+                    <span class="checkmark"></span>
+                    <span class="cb-label">Digital Parchment (EPUB)</span>
+                  </label>
+                  <label class="custom-checkbox">
+                    <input type="checkbox" value="Audiobook" checked>
+                    <span class="checkmark"></span>
+                    <span class="cb-label">Audio Narration</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Filter 3: Price Range Slider -->
+              <div class="filter-group">
+                <div class="price-filter-header">
+                  <h4 class="filter-title"><i class="fa-solid fa-tag"></i> Max Valuation</h4>
+                  <span class="price-val" id="price-slider-value">₹2,500</span>
+                </div>
+                <input type="range" id="price-range-slider" min="200" max="2500" step="50" value="2500"
+                  class="custom-range-slider">
+                <div class="range-labels">
+                  <span>₹200</span>
+                  <span>₹2,500</span>
+                </div>
+              </div>
+
+              <!-- Filter 4: Rating -->
+              <div class="filter-group">
+                <h4 class="filter-title"><i class="fa-solid fa-star"></i> Acclaim Rating</h4>
+                <div class="rating-filter-options" id="rating-filter-container">
+                  <button class="rating-btn active" data-rating="0">Any</button>
+                  <button class="rating-btn" data-rating="4">4.0+ ★</button>
+                  <button class="rating-btn" data-rating="4.5">4.5+ ★</button>
+                  <button class="rating-btn" data-rating="4.8">4.8+ ★</button>
+                </div>
+              </div>
+
+              <!-- Filter 5: Availability & Deals -->
+              <div class="filter-group">
+                <h4 class="filter-title"><i class="fa-solid fa-vault"></i> Vault Status</h4>
+                <label class="custom-checkbox">
+                  <input type="checkbox" id="in-stock-only-toggle">
+                  <span class="checkmark"></span>
+                  <span class="cb-label">Available on Shelves</span>
+                </label>
+                <label class="custom-checkbox">
+                  <input type="checkbox" id="on-sale-only-toggle">
+                  <span class="checkmark"></span>
+                  <span class="cb-label">Special Acquisitions</span>
+                </label>
+              </div>
+            </div>
+          </aside>
+
+          <!-- BOOKS GRID CONTAINER -->
+          <div class="catalog-grid-wrapper">
+            <!-- Active Filter Badges Bar -->
+            <div class="active-filters-bar hidden" id="active-filters-bar">
+              <span class="active-filters-label">Active Criteria:</span>
+              <div class="filter-tags-list" id="filter-tags-list"></div>
+              <button class="clear-all-link" id="clear-all-tags-btn">Clear All</button>
+            </div>
+
+            <!-- Main Book Cards Grid -->
+            <div class="books-grid" id="books-grid-container">
+              <!-- Dynamically populated via JS -->
+            </div>
+
+            <!-- Empty State when no books match filters -->
+            <div class="empty-state hidden" id="catalog-empty-state">
+              <div class="empty-icon"><i class="fa-solid fa-book-open"></i></div>
+              <h3>No Volumes Match Your Criteria</h3>
+              <p>Try resetting the domain category, valuation range, or search keywords.</p>
+              <button class="btn btn-burgundy-solid" id="empty-state-reset-btn">
+                <i class="fa-solid fa-rotate-left"></i> Reset All Filters
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- READING SANCTUARY & ACOUSTICS -->
+    <section class="lounge-section" id="reading-lounge">
+      <div class="section-container">
+        <div class="section-header text-center">
+          <div class="section-subtitle"><i class="fa-solid fa-headphones"></i> The Quiet Chamber</div>
+          <h2 class="section-title">Atmospheric <span class="wine-text">Reading Sanctuary</span></h2>
+          <p class="section-desc">Immerse your study in real-time synthesized acoustic atmosphere and quiet focus
+            intervals.</p>
+        </div>
+
+        <div class="lounge-grid">
+          <!-- Ambient Sound Synthesizer Card -->
+          <div class="lounge-card sound-mixer-card">
+            <div class="card-header-styled">
+              <div class="card-icon-pill"><i class="fa-solid fa-sliders"></i></div>
+              <div>
+                <h3>Sanctuary Acoustics</h3>
+                <small>Synthesized live in-browser via Web Audio API</small>
+              </div>
+              <button class="sound-master-toggle-btn" id="sound-master-btn">
+                <i class="fa-solid fa-play"></i> <span id="master-btn-text">Play Audio</span>
+              </button>
+            </div>
+
+            <div class="sound-channels-list">
+              <!-- Sound 1: Rain -->
+              <div class="sound-channel-item">
+                <div class="channel-info">
+                  <span class="channel-icon">🌧️</span>
+                  <div>
+                    <strong>Rain upon Library Window</strong>
+                    <span class="channel-status" id="rain-status">Paused</span>
+                  </div>
+                </div>
+                <div class="channel-slider-box">
+                  <input type="range" id="rain-volume" min="0" max="100" value="40" class="sound-slider" disabled>
+                  <span class="volume-val" id="rain-val">40%</span>
+                </div>
+              </div>
+
+              <!-- Sound 2: Cozy Fireplace -->
+              <div class="sound-channel-item">
+                <div class="channel-info">
+                  <span class="channel-icon">🔥</span>
+                  <div>
+                    <strong>Study Hearth Fireplace</strong>
+                    <span class="channel-status" id="fire-status">Paused</span>
+                  </div>
+                </div>
+                <div class="channel-slider-box">
+                  <input type="range" id="fire-volume" min="0" max="100" value="30" class="sound-slider" disabled>
+                  <span class="volume-val" id="fire-val">30%</span>
+                </div>
+              </div>
+
+              <!-- Sound 3: Midnight Cafe Ambience -->
+              <div class="sound-channel-item">
+                <div class="channel-info">
+                  <span class="channel-icon">☕</span>
+                  <div>
+                    <strong>Quiet Coffee Reverie</strong>
+                    <span class="channel-status" id="cafe-status">Paused</span>
+                  </div>
+                </div>
+                <div class="channel-slider-box">
+                  <input type="range" id="cafe-volume" min="0" max="100" value="25" class="sound-slider" disabled>
+                  <span class="volume-val" id="cafe-val">25%</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="lounge-footer-tip">
+              <i class="fa-regular fa-lightbulb"></i> <span>Tip: Turn on acoustics while reviewing sample folios in the
+                3D double-page reader!</span>
+            </div>
+          </div>
+
+          <!-- Reading Focus Timer & Goal Tracker -->
+          <div class="lounge-card timer-card">
+            <div class="card-header-styled">
+              <div class="card-icon-pill"><i class="fa-regular fa-clock"></i></div>
+              <div>
+                <h3>Scholarly Focus Timer</h3>
+                <small>Enhance retention with structured deep immersion</small>
+              </div>
+            </div>
+
+            <!-- Timer Circle Display -->
+            <div class="timer-display-box">
+              <div class="timer-svg-wrapper">
+                <svg class="timer-ring" width="200" height="200">
+                  <circle class="timer-ring-bg" stroke="rgba(84,28,41,0.12)" stroke-width="8" fill="transparent" r="85"
+                    cx="100" cy="100" />
+                  <circle class="timer-ring-progress" id="timer-progress-ring" stroke="var(--accent-wine)"
+                    stroke-width="8" stroke-dasharray="534" stroke-dashoffset="0" stroke-linecap="round"
+                    fill="transparent" r="85" cx="100" cy="100" />
+                </svg>
+                <div class="timer-inner-text">
+                  <span class="timer-time" id="timer-display">25:00</span>
+                  <span class="timer-state-label" id="timer-mode-label">Deep Study</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Preset Duration Buttons -->
+            <div class="timer-presets">
+              <button class="timer-preset-btn active" data-mins="25">25 Min</button>
+              <button class="timer-preset-btn" data-mins="45">45 Min</button>
+              <button class="timer-preset-btn" data-mins="60">60 Min</button>
+            </div>
+
+            <!-- Timer Action Controls -->
+            <div class="timer-controls">
+              <button class="btn btn-burgundy-solid" id="timer-start-btn">
+                <i class="fa-solid fa-play"></i> Begin Session
+              </button>
+              <button class="btn btn-burgundy-outline" id="timer-reset-btn">
+                <i class="fa-solid fa-rotate-left"></i> Reset
+              </button>
+            </div>
+
+            <!-- Reading Session Tracker -->
+            <div class="reading-stats-bar">
+              <div class="stat-bubble">
+                <span class="stat-num" id="sessions-completed-val">0</span>
+                <span class="stat-lbl">Sessions Completed</span>
+              </div>
+              <div class="stat-bubble">
+                <span class="stat-num" id="pages-logged-val">0</span>
+                <span class="stat-lbl">Folios Logged</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Literary Quote of the Day Banner -->
+        <div class="quote-banner">
+          <i class="fa-solid fa-quote-left quote-icon"></i>
+          <p class="quote-text" id="daily-quote-text">"A reader lives a thousand lives before he dies. The man who never
+            reads lives only one."</p>
+          <span class="quote-author" id="daily-quote-author">— George R.R. Martin</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <div class="logo-icon-box">
+            <i class="fa-solid fa-book-bookmark"></i>
+          </div>
+          <h3>VINTAGE BOOKSTORE</h3>
+          <p>Preserving the intellectual legacy of humanity through curated academic volumes, timeless classics, and
+            modern archival management.</p>
+          <div class="footer-badges">
+            <span class="footer-badge">Final Year Project</span>
+            <span class="footer-badge">Deep Burgundy &amp; Cream</span>
+            <span class="footer-badge">Web Audio Sanctuary</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Archives</h4>
+          <ul>
+            <li><a href="#hero">The Sanctuary</a></li>
+            <li><a href="#catalog-section">All Volumes</a></li>
+            <li><a href="#vibe-matcher">Atmospheric Matching</a></li>
+            <li><a href="#reading-lounge">Quiet Chamber</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Scholar Services</h4>
+          <ul>
+            <li><a href="#catalog-section">Rare Volume Acquisitions</a></li>
+            <li><a href="#catalog-section">Special Binding Editions</a></li>
+            <li><a href="#reading-lounge">Acoustic Reading Sanctuary</a></li>
+            <li><a href="#catalog-section">Archival Restoration Guides</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Scholar's Circle</h4>
+          <p>Subscribe for notices on rare first editions and archival salon evenings.</p>
+          <form class="footer-newsletter-form" id="footer-newsletter-form" onsubmit="event.preventDefault();">
+            <input type="email" id="newsletter-email" placeholder="Your scholarly email..." required>
+            <button type="submit" class="btn btn-burgundy-solid"><i class="fa-solid fa-paper-plane"></i></button>
+          </form>
+          <div class="promo-hint"><i class="fa-solid fa-gift"></i> Receive code <strong>WELCOME10</strong> on
+            enrollment.</div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Vintage Bookstore &amp; The Scholar's Sanctuary. Final Year Engineering Project.</p>
+        <p class="built-with">Crafted in Deep Burgundy, Wine, Champagne, Cream, and Rose.</p>
+      </div>
+    </footer>
+  </main>
+
+
+  <!-- ========================================================================= -->
+  <!-- 2. MODALS, SLIDE-OVERS & OVERLAYS                                         -->
+  <!-- ========================================================================= -->
+
+  <!-- SHOPPING CART SLIDE-OVER DRAWER -->
+  <div class="cart-drawer-overlay" id="cart-drawer-overlay"></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-hidden="true">
+    <div class="cart-drawer-header">
+      <div class="cart-header-title">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <h3>Your Book Bag</h3>
+        <span class="cart-items-tag" id="drawer-item-count">0 items</span>
+      </div>
+      <button class="close-drawer-btn" id="close-cart-btn" aria-label="Close Cart">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Free Shipping Progress Tracker -->
+    <div class="shipping-tracker-box">
+      <div class="shipping-status-text" id="shipping-tracker-text">
+        Add <strong>₹499</strong> more to unlock <strong>FREE Courier Delivery across India!</strong>
+      </div>
+      <div class="shipping-progress-bar">
+        <div class="shipping-progress-fill" id="shipping-progress-fill" style="width: 0%;"></div>
+      </div>
+    </div>
+
+    <!-- Cart Items Scrollable List -->
+    <div class="cart-items-list" id="cart-items-list">
+      <!-- Dynamically filled with cart items -->
+    </div>
+
+    <!-- Empty Cart View -->
+    <div class="cart-empty-view hidden" id="cart-empty-view">
+      <div class="empty-icon"><i class="fa-solid fa-book-open"></i></div>
+      <h4>Your Book Bag is Empty</h4>
+      <p>Explore our archives and select your desired volumes.</p>
+      <button class="btn btn-burgundy-solid" id="cart-empty-shop-btn">Browse the Library</button>
+    </div>
+
+    <!-- Cart Footer with Promo & Subtotal -->
+    <div class="cart-drawer-footer" id="cart-drawer-footer">
+      <!-- Promo Code Box -->
+      <div class="promo-input-group">
+        <input type="text" id="promo-code-input" placeholder="Scholarly code (e.g. READ20)" autocomplete="off">
+        <button type="button" class="apply-promo-btn" id="apply-promo-btn">Apply</button>
+      </div>
+      <div class="promo-feedback hidden" id="promo-feedback"></div>
+
+      <!-- Financial Breakdown -->
+      <div class="cart-summary-breakdown">
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="cart-subtotal-val">₹0</span>
+        </div>
+        <div class="summary-row discount-row hidden" id="cart-discount-row">
+          <span>Grant Discount (<span id="promo-name-applied"></span>)</span>
+          <span class="discount-num" id="cart-discount-val">-₹0</span>
+        </div>
+        <div class="summary-row">
+          <span>Courier Shipping</span>
+          <span id="cart-shipping-val">₹49</span>
+        </div>
+        <div class="summary-row">
+          <span>Estimated GST (5%)</span>
+          <span id="cart-tax-val">₹0</span>
+        </div>
+        <div class="summary-divider"></div>
+        <div class="summary-row total-row">
+          <strong>Order Total</strong>
+          <strong class="grand-total" id="cart-grand-total-val">₹0</strong>
+        </div>
+      </div>
+
+      <!-- Checkout CTA Button -->
+      <button class="btn btn-burgundy-solid btn-block checkout-btn" id="start-checkout-btn">
+        <i class="fa-solid fa-lock"></i> Proceed to Order Fulfillment
+      </button>
+    </div>
+  </aside>
+
+  <!-- WISHLIST MODAL -->
+  <div class="modal-overlay" id="wishlist-modal-overlay">
+    <div class="modal-card modal-md">
+      <div class="modal-header">
+        <div class="modal-title-box">
+          <i class="fa-solid fa-heart modal-icon rose"></i>
+          <div>
+            <h3>Your Saved Folios</h3>
+            <small>Volumes reserved for future scholarship</small>
+          </div>
+        </div>
+        <button class="modal-close-btn" id="close-wishlist-modal-btn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="wishlist-items-container" id="wishlist-items-container">
+          <!-- Filled dynamically -->
+        </div>
+        <div class="wishlist-empty-view hidden" id="wishlist-empty-view">
+          <div class="empty-icon"><i class="fa-regular fa-heart"></i></div>
+          <h4>No Folios Saved</h4>
+          <p>Click the bookmark heart on any volume to reserve it for later.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3D "LOOK INSIDE" DUAL-PAGE FLIP-BOOK READER MODAL -->
+  <div class="modal-overlay" id="reader-modal-overlay">
+    <div class="modal-card modal-reader">
+      <div class="reader-modal-header">
+        <div class="reader-book-meta">
+          <span class="reader-badge"><i class="fa-solid fa-feather"></i> Archival Sample Excerpt</span>
+          <h3 id="reader-book-title">Neuromancer: 40th Anniversary</h3>
+          <span id="reader-book-author">William Gibson</span>
+        </div>
+        <!-- Reader settings toolbar -->
+        <div class="reader-toolbar">
+          <div class="font-size-controls">
+            <button class="font-btn" id="reader-font-dec" title="Decrease font size">A-</button>
+            <button class="font-btn" id="reader-font-inc" title="Increase font size">A+</button>
+          </div>
+          <div class="reader-theme-toggles">
+            <button class="reader-color-btn" data-readertheme="clean" title="Cream Parchment"><i
+                class="fa-regular fa-sun"></i></button>
+            <button class="reader-color-btn active" data-readertheme="sepia" title="Antique Sepia"><i
+                class="fa-solid fa-feather"></i></button>
+            <button class="reader-color-btn" data-readertheme="dark" title="Velvet Midnight"><i
+                class="fa-solid fa-moon"></i></button>
+          </div>
+          <button class="modal-close-btn" id="close-reader-modal-btn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      </div>
+
+      <div class="reader-modal-body">
+        <!-- 3D Dual-Page Open Book Frame -->
+        <div class="double-page-book" id="double-page-container" data-theme="sepia">
+          <!-- Left Page -->
+          <div class="book-page page-left">
+            <div class="page-header">
+              <span class="chapter-tag" id="reader-chapter-title">Chapter One</span>
+              <span class="page-num" id="reader-left-page-num">01</span>
+            </div>
+            <div class="page-content" id="reader-left-content">
+              <!-- Left excerpt content -->
+            </div>
+            <div class="page-footer">THE SCHOLAR'S SANCTUARY ARCHIVE</div>
+          </div>
+
+          <!-- Book Center Crease & Spine Shadow -->
+          <div class="book-crease"></div>
+
+
+          <!-- Right Page -->
+          <div class="book-page page-right">
+            <div class="page-header">
+              <span class="book-small-title" id="reader-right-header-title">Title</span>
+              <span class="page-num" id="reader-right-page-num">02</span>
+            </div>
+            <div class="page-content" id="reader-right-content">
+              <!-- Right excerpt content -->
+            </div>
+            <div class="page-footer">PRESERVED FOR SCHOLARSHIP</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reader Navigation Footer -->
+      <div class="reader-modal-footer">
+        <div class="reader-audio-excerpt-player">
+          <button class="audio-excerpt-play-btn" id="audio-sample-play-btn">
+            <i class="fa-solid fa-play"></i>
+          </button>
+          <div class="audio-wave-box">
+            <span class="audio-label">Narrated Reading Sample</span>
+            <div class="sound-wave-bars" id="sample-audio-waves">
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="reader-nav-buttons">
+          <button class="btn btn-burgundy-outline" id="reader-prev-page-btn" disabled>
+            <i class="fa-solid fa-chevron-left"></i> Previous Folio
+          </button>
+          <button class="btn btn-burgundy-outline" id="reader-next-page-btn">
+            Next Folio <i class="fa-solid fa-chevron-right"></i>
+          </button>
+          <button class="btn btn-burgundy-solid" id="reader-buy-now-btn">
+            <i class="fa-solid fa-cart-plus"></i> Acquire Full Volume
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOOK DETAIL & REVIEWS MODAL -->
+  <div class="modal-overlay" id="book-detail-modal-overlay">
+    <div class="modal-card modal-lg" id="book-detail-card">
+      <!-- Filled dynamically by JS -->
+    </div>
+  </div>
+
+  <!-- MULTI-STEP CHECKOUT & INVOICE MODAL -->
+  <div class="modal-overlay" id="checkout-modal-overlay">
+    <div class="modal-card modal-checkout">
+      <div class="modal-header">
+        <div class="modal-title-box">
+          <i class="fa-solid fa-feather modal-icon wine"></i>
+          <div>
+            <h3>Archival Order Checkout</h3>
+            <small>The Scholar's Sanctuary Fulfillment Gateway</small>
+          </div>
+        </div>
+        <button class="modal-close-btn" id="close-checkout-modal-btn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <!-- Checkout Step Wizard Bar -->
+      <div class="checkout-wizard-steps">
+        <div class="wizard-step active" data-step="1">
+          <span class="step-num">1</span>
+          <span class="step-label">Destination</span>
+        </div>
+        <div class="wizard-line"></div>
+        <div class="wizard-step" data-step="2">
+          <span class="step-num">2</span>
+          <span class="step-label">Payment</span>
+        </div>
+        <div class="wizard-line"></div>
+        <div class="wizard-step" data-step="3">
+          <span class="step-num">3</span>
+          <span class="step-label">Folio Invoice</span>
+        </div>
+      </div>
+
+      <!-- STEP 1: SHIPPING FORM -->
+      <div class="checkout-step-content active" id="checkout-step-1">
+        <form id="shipping-form" class="checkout-form-grid">
+          <div class="form-group col-span-2">
+            <label class="form-label">Full Scholar Name *</label>
+            <input type="text" id="ship-name" class="form-input" placeholder="e.g. Cassandra Vance" value="Aarav Sharma"
+              required>
+          </div>
+          <div class="form-group col-span-2">
+            <label class="form-label">Scholarly Email Address *</label>
+            <input type="email" id="ship-email" class="form-input" placeholder="aarav.sharma@sanctuary.in"
+              value="aarav.sharma@sanctuary.in" required>
+          </div>
+          <div class="form-group col-span-2">
+            <label class="form-label">Delivery Street Address *</label>
+            <input type="text" id="ship-address" class="form-input" placeholder="Flat 402, Heritage Heights, MG Road"
+              value="Flat 402, Heritage Heights, MG Road" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">City *</label>
+            <input type="text" id="ship-city" class="form-input" value="Bengaluru" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">PIN Code *</label>
+            <input type="text" id="ship-zip" class="form-input font-mono" value="560001" required>
+          </div>
+          <div class="col-span-2 step-nav-row">
+            <div></div>
+            <button type="submit" class="btn btn-burgundy-solid">
+              Proceed to Payment <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- STEP 2: PAYMENT FORM -->
+      <div class="checkout-step-content" id="checkout-step-2">
+        <form id="payment-form" class="checkout-form-grid">
+          <div class="card-simulation-preview col-span-2">
+            <div class="credit-card-chip"></div>
+            <div class="card-preview-number" id="preview-card-num">•••• •••• •••• 5621</div>
+            <div class="card-preview-bottom">
+              <div>
+                <span class="card-lbl">SCHOLAR NAME</span>
+                <span class="card-val" id="preview-card-name">AARAV SHARMA</span>
+              </div>
+              <div>
+                <span class="card-lbl">EXPIRES</span>
+                <span class="card-val" id="preview-card-exp">12/28</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-span-2">
+            <label class="form-label">Card / UPI / NetBanking Reference *</label>
+            <input type="text" id="pay-card-num" class="form-input font-mono" placeholder="4242 4242 4242 5621"
+              value="4242 4242 4242 5621" required maxlength="19">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Expiry Date (MM/YY) *</label>
+            <input type="text" id="pay-exp" class="form-input font-mono" placeholder="12/28" value="12/28" required
+              maxlength="5">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Security CVV *</label>
+            <input type="password" id="pay-cvc" class="form-input font-mono" placeholder="888" value="888" required
+              maxlength="4">
+          </div>
+
+          <div class="col-span-2 checkout-amount-summary">
+            <span>Total Payable Amount:</span>
+            <strong class="payable-total" id="checkout-payable-total">₹0</strong>
+          </div>
+
+          <div class="col-span-2 step-nav-row">
+            <button type="button" class="btn btn-burgundy-outline" id="back-to-step-1-btn">
+              <i class="fa-solid fa-arrow-left"></i> Back
+            </button>
+            <button type="submit" class="btn btn-burgundy-solid" id="complete-payment-btn">
+              <i class="fa-solid fa-lock"></i> Authorize &amp; Acquire
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- STEP 3: ORDER RECEIPT & INVOICE -->
+      <div class="checkout-step-content" id="checkout-step-3">
+        <div class="receipt-success-card" id="receipt-print-area">
+          <div class="receipt-header">
+            <div class="success-check-badge">
+              <i class="fa-solid fa-check"></i>
+            </div>
+            <h3>Acquisition Confirmed!</h3>
+            <p>Your volumes have been reserved and prepared for courier dispatch.</p>
+            <span class="order-id-tag">Folio Order: <strong id="receipt-order-id">#AUR-89421</strong></span>
+          </div>
+
+          <div class="receipt-invoice-body">
+            <div class="invoice-meta-grid">
+              <div>
+                <small>Billed To:</small>
+                <strong id="receipt-customer-name">Aarav Sharma</strong>
+                <p id="receipt-customer-email">aarav.sharma@sanctuary.in</p>
+                <p id="receipt-customer-address">Flat 402, Heritage Heights</p>
+              </div>
+              <div class="text-right">
+                <small>Date &amp; Time:</small>
+                <strong id="receipt-date">Sep 09, 2026</strong>
+                <p>Status: <span class="status-pill status-paid">HONORED &amp; PAID</span></p>
+              </div>
+            </div>
+
+            <div class="receipt-items-table">
+              <div class="receipt-items-header">
+                <span>Volume Title</span>
+                <span class="text-center">Qty</span>
+                <span class="text-right">Price</span>
+              </div>
+              <div class="receipt-items-body" id="receipt-items-list">
+                <!-- Generated dynamically -->
+              </div>
+            </div>
+
+            <div class="receipt-totals-box">
+              <div class="receipt-total-row">
+                <span>Total Paid</span>
+                <strong class="receipt-grand-total" id="receipt-total-paid">₹0</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="receipt-actions-footer">
+            <button class="btn btn-burgundy-outline" id="print-receipt-btn">
+              <i class="fa-solid fa-print"></i> Print Folio Invoice
+            </button>
+            <button class="btn btn-burgundy-solid" id="finish-order-btn">
+              <i class="fa-solid fa-book-open"></i> Return to Library
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Main Application Logic Script -->
+  <script src="app.js"></script>
+</body>
+
+</html>
